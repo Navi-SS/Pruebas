@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-ua-Compatible" content="ie=edge">
+	<title>Usuarios</title>
+	<!--Boortstrap 4-->
+	<link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css">
+	<!--Fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet"> 
+	<!--MAIN_CSS-->
+	<link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+</head>
+<body>
+	<main class="container p-4">
+		<h1 class="display-4 text-center title mt-4">Usuarios registrados</h1>
+		<div class="row">
+			<div class="col-md-4 offset-md-4 my-auto">
+				<div class="card">
+					<div class="card-header">
+						<form action="/add_contact" method="POST">
+							<div class="form-group">
+								<input type="text" name="contenido" placeholder="Usuario" class="form-control" autofocus>
+							</div>
+							<div class="form-group">
+								<input type="text" name="fecha_ent" placeholder="Fecha de entrevista" class="form-control" autofocus>
+							</div>
+							<div>
+								<label>Habilidades</label>
+							</div>
+							<div>
+								Python <input type="checkbox" name="mycheckbox" value="1">
+							</div>
+							<div>
+								Java <input type="checkbox" name="mycheckbox2" value="2">
+							</div>
+							<div>
+								Elastic <input type="checkbox" name="mycheckbox3" value="3">
+							</div>
+							<div>
+								Microservicios <input type="checkbox" name="mycheckbox4" value="4">
+							</div>
+							<button type="submit" class="btn btn-primary btn-block">
+								Guardar
+							</button>
+						</form>
+					</div>
+					<div class="card-body">
+						<ul class="list-group">
+							{% for usuario in name_users %}
+							<li class="list-group-item">
+								{{usuario.name}}
+								<a href="/detalle/{{usuario.id}}" class="btn btn-success btn-sm"> Detalles </a>
+								<a href="/delete/{{usuario.id}}" class="btn btn-danger btn-sm">Borrar</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
